@@ -8,6 +8,31 @@ sys.path.append("C:/Users/Prakriti Aayansh/OneDrive/Desktop/ImageTalk/Model")
 # Import predict_step from imageCap.py
 from imageCap import predict_step
 
+# Set the page configuration
+st.set_page_config(
+    page_title="PixleBot",
+    page_icon="🤖",
+    layout="centered",
+)
+
+# Hide Streamlit branding and GitHub icons using JavaScript
+hide_streamlit_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            .css-1lsmgbg.e1fqkh3o4 {
+                visibility: hidden;
+            }
+            .css-1n543e5.e1fqkh3o3 {
+                visibility: hidden;
+            }
+            .css-1kyxreq.e1fqkh3o2 {
+                visibility: hidden;
+            }
+            </style>
+            """
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
 # Center align the content
 st.title("Hi, I am PixleBot 🤖")
 st.subheader("I can make your images talk!")
@@ -18,8 +43,7 @@ col1, col2, col3 = st.columns([1, 1, 1])  # Create three columns of equal width
 with col2:  # Use the middle column for center alignment
     st.image("https://static.vecteezy.com/system/resources/previews/010/265/390/original/cute-3d-robot-say-hello-png.png", width=300)
 
-
-st.title("To check my powers , upload the image below")
+st.title("To check my powers, upload the image below")
 uploaded_file = st.file_uploader("Upload an image...", type=["jpg", "jpeg", "png"])
 
 if uploaded_file is not None:
