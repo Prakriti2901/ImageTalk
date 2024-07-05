@@ -2,45 +2,40 @@ import streamlit as st
 from PIL import Image
 import sys
 
-# Add the path to sys.path temporarily to import predict_step
+# Adding the path
 sys.path.append("C:/Users/Prakriti Aayansh/OneDrive/Desktop/ImageTalk/Model")
 
-# Import predict_step from imageCap.py
+# Importing function from imageCap file
 from imageCap import predict_step
 
-# Set the page configuration
+# Page config
 st.set_page_config(
     page_title="PixleBot",
     page_icon="🤖",
     layout="centered",
 )
 
-# Hide Streamlit branding and GitHub icons using JavaScript
-hide_streamlit_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            .css-1lsmgbg.e1fqkh3o4 {
-                visibility: hidden;
-            }
-            .css-1n543e5.e1fqkh3o3 {
-                visibility: hidden;
-            }
-            .css-1kyxreq.e1fqkh3o2 {
-                visibility: hidden;
-            }
-            </style>
-            """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+# Hiding the main menu and footer
+st.markdown(
+    """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .css-15vlnr2.e8zbici0 {
+        visibility: hidden;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 
-# Center align the content
 st.title("Hi, I am PixleBot 🤖")
 st.subheader("I can make your images talk!")
 st.markdown("---")  # Horizontal line for separation
 
-# Center align the robot image
-col1, col2, col3 = st.columns([1, 1, 1])  # Create three columns of equal width
-with col2:  # Use the middle column for center alignment
+# Align the robot image
+col1, col2, col3 = st.columns([1, 1, 1])  # Creating three columns of equal width
+with col2:  # Using middle column for alignment
     st.image("https://static.vecteezy.com/system/resources/previews/010/265/390/original/cute-3d-robot-say-hello-png.png", width=300)
 
 st.title("To check my powers, upload the image below")
@@ -51,14 +46,14 @@ if uploaded_file is not None:
     st.write("")
     st.text("Generating caption...")
 
-    # Save uploaded image temporarily
+    # Saving uploaded image temporarily
     with open("temp_image.png", "wb") as f:
         f.write(uploaded_file.getbuffer())
 
-    # Predict caption using the image captioning model
+    # Predicting caption using the model
     image_path = "temp_image.png"  # Path to the temporary image
     predictions = predict_step([image_path])
 
-    # Display the predicted caption
+    # Displaying caption
     for idx, pred in enumerate(predictions):
         st.write(f"Image {idx+1} Caption: {pred}")
