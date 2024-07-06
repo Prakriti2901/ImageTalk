@@ -20,9 +20,9 @@ Interactive Experience: Engage with the model and see how it interprets differen
 
 
 **🛠️ Technology Stack**
-Python
-PyTorch, Hugging Face Transformers: Machine learning models
-Streamlit: Web app deployment
+1. Python
+2. PyTorch, Hugging Face Transformers: Machine learning models
+3. Streamlit: Web app deployment
 
 
 
